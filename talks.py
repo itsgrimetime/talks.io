@@ -29,6 +29,7 @@ def show_video(video_id):
 
 def connect_db():
     c = MongoClient()
+    c.talks
 
 if __name__ == "__main__":
     app.debug = True
