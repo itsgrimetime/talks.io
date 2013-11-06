@@ -8,7 +8,7 @@ mongo = PyMongo(app)
 def videos():
 
     videos = mongo.db.test_data.find()
-    return render_template('videos.html', videos=videos)
+    return render_template('videos.htmljinja', videos=videos)
 
 @app.route("/")
 def homepage():
