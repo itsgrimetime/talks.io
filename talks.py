@@ -1,19 +1,22 @@
 from flask import Flask
+from flask.ext.pymongo import PyMongo
+
 app = Flask(__name__)
-
-@app.before_request
-def before_request():
-    g.db = connect_db()
-
-@app.teardown_request
-def teardown_request(exception):
-    db = getattr(g, 'db', None)
-    if db is not None:
-	db.close()
+mongo = PyMongo(app)
 
 @app.route("/videos/")
 def videos():
-    return "Videos Homepage!"
+
+    videos = mongo.db.test_data.find()
+
+    str = ""
+    for video in videos:
+	print video
+	for item in video:
+	    str += "{item} : {value}\n".format(item=item, value=video[item])
+
+    print str
+    return str
 
 @app.route("/")
 def homepage():
@@ -22,15 +25,10 @@ def homepage():
 @app.route("/video/<int:video_id>")
 def show_video(video_id):
     # gotta get video from database
-
     # then we can just display its attributes
-    return """ Video {id} by {author}
-		{link} """.format(id=video_id)
-
-def connect_db():
-    c = MongoClient()
-    c.talks
+    return "video {id}".format(id=video_id)
 
 if __name__ == "__main__":
+    app.name = "talks"
     app.debug = True
     app.run()
