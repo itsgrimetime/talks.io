@@ -1,0 +1,8 @@
+<!doctype html>
+<title>All Videos</title>
+{% for video in videos %}
+<h1>Author: {{ video['author'] }}</h1>
+<a href="{{ video['link'] }}">Link</a>
+<p>Submitter: {{ video['submitter'] }}</p>
+<p>Rating : {{ video['rating'] }}</p>
+{% endfor %}
