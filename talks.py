@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for, render_template
 from flask.ext.pymongo import PyMongo
 
 app = Flask(__name__)
@@ -8,15 +8,7 @@ mongo = PyMongo(app)
 def videos():
 
     videos = mongo.db.test_data.find()
-
-    str = ""
-    for video in videos:
-	print video
-	for item in video:
-	    str += "{item} : {value}\n".format(item=item, value=video[item])
-
-    print str
-    return str
+    return render_template('videos.html', videos=videos)
 
 @app.route("/")
 def homepage():
