@@ -12,7 +12,7 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def homepage():
-    return "Talks Homepage!"
+    return render_template('main.htmljinja')
 
 ####### Videos #########
 

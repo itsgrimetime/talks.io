@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>Submit New Video</title>
+{% extends "layout.htmljinja" %}
 <form method="POST" action="/submit">
 {{ form.hidden_tag() }}
 {{ form.title.label }} {{ form.title(size=20) }}
