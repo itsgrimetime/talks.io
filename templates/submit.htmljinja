@@ -1,12 +1,13 @@
 <!doctype html>
 
 {% extends "layout.htmljinja" %}
+{% block body %}
 <form method="POST" action="/submit">
 {{ form.hidden_tag() }}
 {{ form.title.label }} {{ form.title(size=20) }}
 {{ form.link.label }} {{ form.link(size=20) }}
 {{ form.submitter.label }} {{ form.submitter(size=20) }}
 {{ form.author.label }} {{ form.author(size=20) }}
-
+{% endblock %}
 <input type="submit" value="Go">
 </form>
